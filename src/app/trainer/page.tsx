@@ -8,6 +8,7 @@ import { headers } from 'next/headers';
 import { generateVocabsAction } from '@/server/actions/generateVocabs';
 import { SignOutButton } from '@/components/SignOutButton';
 import { GenerateWordsButton } from './GenerateWordsButton';
+import { revalidatePath } from 'next/cache';
 
 export default async function TrainerPage() {
   const session = await auth.api.getSession({
@@ -29,6 +30,7 @@ export default async function TrainerPage() {
     const next = await db.select().from(vocabsTable).where(eq(vocabsTable.userId, session.user.id)).orderBy(vocabsTable.nextReview).limit(1);
     if(!next.length) {
       await generateVocabsAction({ count: 10 });
+      revalidatePath('/trainer');
     } else {
       nextDate = next[0].nextReview;
     }
