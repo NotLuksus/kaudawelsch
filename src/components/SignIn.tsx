@@ -91,7 +91,7 @@ export function SignIn() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">
+            <Button disabled={isPending} type="submit" className="w-full">
               Sign In
             </Button>
           </form>

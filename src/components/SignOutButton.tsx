@@ -4,6 +4,7 @@ import { signoutAction } from '@/server/actions/signout';
 import { toast } from 'sonner';
 import { useServerAction } from 'zsa-react';
 import { DropdownMenuItem } from './ui/dropdown-menu';
+import { Button } from './ui/button';
 
 export function SignOutButton() {
   const { execute } = useServerAction(signoutAction);
@@ -18,5 +19,5 @@ export function SignOutButton() {
     }
   };
 
-  return <DropdownMenuItem onClick={handleSignOut}>Sign out</DropdownMenuItem>;
+  return <Button onClick={handleSignOut}>Sign out</Button>;
 }

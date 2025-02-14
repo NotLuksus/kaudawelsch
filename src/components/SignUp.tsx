@@ -44,7 +44,7 @@ export function SignUp() {
     },
   });
 
-  const { execute } = useServerAction(signupAction);
+  const { isPending, execute } = useServerAction(signupAction);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const [_, err] = await execute(values);
@@ -105,7 +105,7 @@ export function SignUp() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">
+            <Button disabled={isPending} type="submit" className="w-full">
               Sign Up
             </Button>
           </form>

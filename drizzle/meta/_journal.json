@@ -15,6 +15,13 @@
       "when": 1739543082537,
       "tag": "0001_green_psylocke",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1739544392401,
+      "tag": "0002_high_wallow",
+      "breakpoints": true
     }
   ]
 }

@@ -46,6 +46,7 @@ export const generateVocabsAction = createServerAction()
     - Use excessive compound words
     - Add exaggerated umlauts
     - Keep it somewhat believable as a regional variant
+    - The new words should be different from the existing ones, only follow the same tone
 
     EXISTING VOCABS:
     ${currentVocabs.map((vocab) => `${vocab.dialect}: ${vocab.meaning}`).join('\n')}
