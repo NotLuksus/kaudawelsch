@@ -7,6 +7,7 @@ import { redirect } from 'next/navigation';
 import { headers } from 'next/headers';
 import { generateVocabsAction } from '@/server/actions/generateVocabs';
 import { SignOutButton } from '@/components/SignOutButton';
+import { GenerateWordsButton } from './GenerateWordsButton';
 
 export default async function TrainerPage() {
   const session = await auth.api.getSession({
@@ -37,8 +38,9 @@ export default async function TrainerPage() {
         <SignOutButton />
       </div>
       <h1 className="mb-8 font-bold text-3xl">Kaudawelsch</h1>
-      {nextDate && <p>Next review: {nextDate.toLocaleDateString()}</p>}
-      <VocabTrainer vocabs={vocabs} />
+      {nextDate ? <p>Next review: {nextDate.toLocaleDateString()}</p> : <VocabTrainer vocabs={vocabs} />}
+  
+      <GenerateWordsButton />
     </div>
   );
 }

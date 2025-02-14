@@ -20,7 +20,7 @@ export default function VocabTrainer({ vocabs }: { vocabs: SelectVocab[] }) {
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   
   const { isPending: isPendingRemove, execute: executeRemove } = useServerAction(removeVocabAction);
-  const { isPending: isPendingGenerate, execute: executeGenerate } = useServerAction(generateVocabsAction);
+ 
 
   const checkAnswer = async () => {
     if (!vocabs[currentIndex]) return;
@@ -50,13 +50,7 @@ export default function VocabTrainer({ vocabs }: { vocabs: SelectVocab[] }) {
 
   return (
     <div className="flex flex-col items-center">
-      <button 
-        className="mb-8 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600 disabled:opacity-50" 
-        disabled={isPendingGenerate} 
-        onClick={() => executeGenerate({ count: 10 })}
-      >
-        Generate More Words
-      </button>
+
 
       <div className="w-full max-w-md">
         {vocabs.length > 0 && (
