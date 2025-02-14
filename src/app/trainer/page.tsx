@@ -29,8 +29,10 @@ export default async function TrainerPage() {
     const next = await db.select().from(vocabsTable).where(eq(vocabsTable.userId, session.user.id)).orderBy(vocabsTable.nextReview).limit(1);
     if(!next.length) {
       await generateVocabsAction({ count: 10 });
+    } else {
+      nextDate = next[0].nextReview;
     }
-    nextDate = next[0].nextReview;
+    
   }
   return (
     <div className="relative container mx-auto px-4 py-8">
