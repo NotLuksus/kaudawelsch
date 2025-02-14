@@ -28,7 +28,7 @@ export async function updateVocab({ vocabId, quality }: UpdateVocabParams) {
   } else if (vocab.interval === 1) {
     interval = 6
   } else {
-    interval = Math.round(vocab.interval * easeFactor)
+    interval = Math.round((vocab.interval ?? 0) * easeFactor)
   }
 
   const nextReview = new Date()
