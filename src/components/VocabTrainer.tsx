@@ -6,7 +6,7 @@ import VocabCard from './VocabCard';
 import { useServerAction } from 'zsa-react';
 import { removeVocabAction } from '@/server/actions/removeVocab';
 import { generateVocabsAction } from '@/server/actions/generateVocabs';
-import { updateVocab } from '@/server/actions/updateVocab'
+
 
 export type SelectVocab = typeof vocabsTable.$inferSelect;
 
@@ -14,26 +14,6 @@ export default function VocabTrainer({ vocabs }: { vocabs: SelectVocab[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { isPending: isPendingRemove, execute: executeRemove } = useServerAction(removeVocabAction);
   const { isPending: isPendingGenerate, execute: executeGenerate } = useServerAction(generateVocabsAction);
-
-  const handleAnswer = async (correct: boolean) => {
-    if (!vocabs[currentIndex]) return
-
-    // Quality rating:
-    // 5 - perfect response
-    // 4 - correct response after a hesitation
-    // 3 - correct response with difficulty
-    // 2 - incorrect response; where the correct one seemed easy to recall
-    // 1 - incorrect response; the correct one remembered
-    // 0 - complete blackout
-    const quality = correct ? 5 : 2
-
-    await updateVocab({
-      vocabId: vocabs[currentIndex].id,
-      quality,
-    })
-
-    // ... existing answer handling code ...
-  }
 
   return (
     <div className="flex flex-col items-center">
